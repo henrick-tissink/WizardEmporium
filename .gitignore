@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+# WizardEmporium.User
+!WizardEmporium.User/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -347,3 +350,5 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+
+*.db

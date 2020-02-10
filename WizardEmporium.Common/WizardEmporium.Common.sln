@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardEmporium.Common", "WizardEmporium.Common\WizardEmporium.Common.csproj", "{F965514A-0166-4038-8639-4608DA0EC22B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F965514A-0166-4038-8639-4608DA0EC22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F965514A-0166-4038-8639-4608DA0EC22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F965514A-0166-4038-8639-4608DA0EC22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F965514A-0166-4038-8639-4608DA0EC22B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC8A0DB4-20AB-40D1-AAB1-7C5C6C114E0D}
+	EndGlobalSection
+EndGlobal

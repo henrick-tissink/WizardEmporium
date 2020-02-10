@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardEmporium.User", "WizardEmporium.User\WizardEmporium.User.csproj", "{FF680D59-D584-4934-8666-A413AC571D4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardEmporium.Common", "..\WizardEmporium.Common\WizardEmporium.Common\WizardEmporium.Common.csproj", "{3839791A-BCA4-4B83-B0DC-DEDEEAD509AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF680D59-D584-4934-8666-A413AC571D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF680D59-D584-4934-8666-A413AC571D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF680D59-D584-4934-8666-A413AC571D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF680D59-D584-4934-8666-A413AC571D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3839791A-BCA4-4B83-B0DC-DEDEEAD509AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3839791A-BCA4-4B83-B0DC-DEDEEAD509AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3839791A-BCA4-4B83-B0DC-DEDEEAD509AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3839791A-BCA4-4B83-B0DC-DEDEEAD509AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6543A0FB-9B67-4DD6-9782-E8C066232151}
+	EndGlobalSection
+EndGlobal
