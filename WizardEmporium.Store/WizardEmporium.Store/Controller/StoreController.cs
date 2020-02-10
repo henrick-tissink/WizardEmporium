@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WizardEmporium.Common.SharedController;
 
 namespace WizardEmporium.Store.Controller
@@ -6,19 +7,37 @@ namespace WizardEmporium.Store.Controller
     public class StoreController : BaseController
     {
         [HttpGet("Items")]
-        public IActionResult GetItems()
+        public IActionResult GetItems(IEnumerable<int> itemIds)
         {
             return null;
         }
 
-        [HttpGet("Item/{itemId}")]
-        public IActionResult GetItem(int itemId)
+        [HttpPut("Items")]
+        public IActionResult UpdateItems()
+        {
+            return null;
+        }
+
+        [HttpDelete("Items")]
+        public IActionResult DeleteItems(IEnumerable<int> itemIds)
         {
             return null;
         }
 
         [HttpPost("Buy/{itemId}")]
-        public IActionResult BuyItem()
+        public IActionResult BuyItem(int itemId, [FromQuery]int accountId)
+        {
+            return null;
+        }
+
+        [HttpPost("Order")]
+        public IActionResult OrderItems()
+        {
+            return null;
+        }
+
+        [HttpPut("ProcessOrders")]
+        public IActionResult ProcessOrders(IEnumerable<int> orderIds)
         {
             return null;
         }
