@@ -12,20 +12,26 @@ namespace WizardEmporium.Store.Controller
             return null;
         }
 
-        [HttpPut("Items")]
+        [HttpPut("MagicItems")]
         public IActionResult UpdateItems()
         {
             return null;
         }
 
-        [HttpDelete("Items")]
+        [HttpPost("MagicItems")]
+        public IActionResult AddItems()
+        {
+            return null;
+        }
+
+        [HttpDelete("MagicItems")]
         public IActionResult DeleteItems(IEnumerable<int> itemIds)
         {
             return null;
         }
 
-        [HttpPost("Buy/{itemId}")]
-        public IActionResult BuyItem(int itemId, [FromQuery]int accountId)
+        [HttpPost("Buy/{magicItemId}")]
+        public IActionResult BuyItem(int magicItemId, [FromQuery]int accountId)
         {
             return null;
         }

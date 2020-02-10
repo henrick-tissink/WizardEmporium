@@ -15,7 +15,7 @@ namespace WizardEmporium.Common.SharedRepository
             this.connectionString = connectionString;
         }
 
-        protected async Task<SQLiteConnection> getConnectionAsync()
+        private async Task<SQLiteConnection> getConnectionAsync()
         {
             var connection = new SQLiteConnection(connectionString);
             await connection.OpenAsync();
