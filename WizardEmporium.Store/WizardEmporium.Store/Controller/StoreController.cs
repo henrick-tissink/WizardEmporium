@@ -1,11 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using WizardEmporium.Common.SharedController;
+using WizardEmporium.Store.Dto;
 
 namespace WizardEmporium.Store.Controller
 {
     public class StoreController : BaseController
     {
+        [HttpGet("AllItems")]
+        public IActionResult GetAllItems()
+        {
+            return null;
+        }
+
         [HttpGet("Items")]
         public IActionResult GetItems(IEnumerable<int> itemIds)
         {
@@ -13,13 +20,13 @@ namespace WizardEmporium.Store.Controller
         }
 
         [HttpPut("MagicItems")]
-        public IActionResult UpdateItems()
+        public IActionResult UpdateItems(IEnumerable<MagicItemDto> magicItems)
         {
             return null;
         }
 
         [HttpPost("MagicItems")]
-        public IActionResult AddItems()
+        public IActionResult AddItems(IEnumerable<MagicItemDto> magicItems)
         {
             return null;
         }
@@ -37,7 +44,13 @@ namespace WizardEmporium.Store.Controller
         }
 
         [HttpPost("Order")]
-        public IActionResult OrderItems()
+        public IActionResult OrderItems(IEnumerable<MagicItemOrderDto> magicItemOrders)
+        {
+            return null;
+        }
+
+        [HttpGet("Orders")]
+        public IActionResult GetOrders()
         {
             return null;
         }

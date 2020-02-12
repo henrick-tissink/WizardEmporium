@@ -27,5 +27,22 @@ namespace WizardEmporium.Common.SharedRepository
             using var conn = await getConnectionAsync();
             return await action(conn);
         }
+
+        protected async Task GetConnectionTransactionAsync(Func<SQLiteConnection, SQLiteTransaction, Task> action)
+        {
+            using var conn = await getConnectionAsync();
+            using var transaction = conn.BeginTransaction();
+
+            try
+            {
+                await action(conn, transaction);
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+        }
     }
 }

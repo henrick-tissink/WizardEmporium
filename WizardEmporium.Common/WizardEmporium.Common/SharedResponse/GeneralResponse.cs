@@ -2,16 +2,9 @@
 
 namespace WizardEmporium.Common.SharedResponse
 {
-    public class GeneralResponse : BaseResponse
+    public class GeneralResponse : BaseResponse<GlobalResponseCode>
     {
-        public override GlobalResponseCode GlobalResponseCode => ResponseCode;
-
-        public GeneralResponse(GlobalResponseCode responseCode)
-        {
-            ResponseCode = responseCode;
-        }
-
-        private GlobalResponseCode ResponseCode { get; }
+        public GeneralResponse(GlobalResponseCode responseCode = GlobalResponseCode.None) : base(responseCode) { }
 
         public static implicit operator GeneralResponse(GlobalResponseCode responseCode) => new GeneralResponse(responseCode);
     }
