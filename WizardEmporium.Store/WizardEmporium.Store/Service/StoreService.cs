@@ -58,6 +58,7 @@ namespace WizardEmporium.Store.Service
 
         public async Task<BuyItemResponse> BuyItemAsync(int magicItemId, int accountId)
         {
+	//Concurrency issues here for sure
             var item = (await repo.GetMagicItemsAsync(new List<int> { magicItemId }))?.FirstOrDefault();
 
             if (item == null)

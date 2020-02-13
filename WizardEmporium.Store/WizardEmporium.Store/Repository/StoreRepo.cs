@@ -75,7 +75,7 @@ WHERE OrderId = @orderId", new { orderId }));
                 var deleteOrder = con.ExecuteAsync(@"
 DELETE FROM Orders
 WHERE OrderId = @orderId", new { orderId });
-
+//Your table naming is inconsistent here with the rest of your tables. Here it is a plural whereas the rest are singular.
                 var updateStore = con.ExecuteAsync(@"
 UPDATE Inventory
 SET Quantity = @Quantity
