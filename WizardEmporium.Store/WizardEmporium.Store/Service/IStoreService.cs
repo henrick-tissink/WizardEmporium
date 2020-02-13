@@ -8,14 +8,14 @@ namespace WizardEmporium.Store.Service
 {
     public interface IStoreService
     {
-        Task<GeneralResponse> AddStockAsync(IEnumerable<MagicItemDto> magicItems);
+        Task<EmptyResponse> AddStockAsync(IEnumerable<MagicItemDto> magicItems);
         Task<BuyItemResponse> BuyItemAsync(int magicItemId, int accountId);
-        Task<GeneralResponse> DeleteStockAsync(IEnumerable<int> itemIds);
-        Task<GetMagicItemsResponse> GetAllStockAsync();
-        Task<GetMagicItemsResponse> GetStockAsync(IEnumerable<int> magicItemIds);
-        Task<GeneralResponse> PlaceOrdersAsync(PlaceOrderRequest request);
+        Task<EmptyResponse> DeleteStockAsync(IEnumerable<int> itemIds);
+        Task<SimpleResponse<IEnumerable<MagicItemDto>>> GetAllStockAsync();
+        Task<SimpleResponse<IEnumerable<MagicItemOrderDto>>> GetOrdersAsync();
+        Task<SimpleResponse<IEnumerable<MagicItemDto>>> GetStockAsync(IEnumerable<int> magicItemIds);
+        Task<EmptyResponse> PlaceOrdersAsync(PlaceOrderRequest request);
         Task<ProcessOrderResponse> ProcessOrderAsync(int orderId);
-        Task<GetOrdersResponse> GetOrdersAsync();
-        Task<GeneralResponse> UpdateStockAsync(IEnumerable<MagicItemDto> magicItems);
+        Task<EmptyResponse> UpdateStockAsync(IEnumerable<MagicItemDto> magicItems);
     }
 }

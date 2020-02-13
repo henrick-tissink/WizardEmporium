@@ -3,7 +3,9 @@
     public enum GlobalResponseCode
     {
         None = 0,
-        UnexpectedError = 10,
+        UnexpectedError = 1,
+        ResourceNotFound = 2,
+        ActionAlreadyCompleted = 3,
 
         // Authentication
         UserDoesNotExist = 101,
@@ -12,10 +14,10 @@
         AccountHasBeenSuspended = 104,
         AccountNotSuspended = 105,
 
-        // No Stock
+        // Store
         NoStockAvailable = 201,
         InsufficientFunds = 202,
         ItemDoesNotExist = 203,
-        OrderNotFound = 204
+        OrderNotFound = 204,
     }
 }

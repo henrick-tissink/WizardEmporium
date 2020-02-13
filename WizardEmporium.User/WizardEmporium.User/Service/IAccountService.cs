@@ -6,12 +6,12 @@ namespace WizardEmporium.User.Service
 {
     public interface IAccountService
     {
-        Task<GeneralResponse> AdminRegisterAsync(AdminRegisterRequest request);
-        Task<GeneralResponse> DeleteAccountAsync(int accountId);
+        Task<EmptyResponse> AdminRegisterAsync(AdminRegisterRequest request);
+        Task<EmptyResponse> DeleteAccountAsync(int accountId);
         Task<LoginResponse> LoginAsync(LoginRequest request);
         Task<PaymentResponse> ProcessPaymentAsync(PaymentRequest request);
-        Task<GeneralResponse> SuspendAccountAsync(int accountId);
-        Task<GeneralResponse> UnsuspendAccountAsync(int accountId);
-        Task<GeneralResponse> UserRegisterAsync(UserRegisterRequest request);
+        Task<EmptyResponse> SuspendAccountAsync(int accountId);
+        Task<EmptyResponse> UnsuspendAccountAsync(int accountId);
+        Task<EmptyResponse> UserRegisterAsync(UserRegisterRequest request);
     }
 }

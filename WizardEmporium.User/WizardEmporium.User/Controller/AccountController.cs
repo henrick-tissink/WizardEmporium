@@ -19,14 +19,14 @@ namespace WizardEmporium.User
             this.service = service;
         }
 
-        [ProducesResponseType(typeof(GeneralResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [DescribeErrorTypeOnResponse(typeof(GlobalResponseCode), 400)]
         [HttpPost("Register/User")]
         public async Task<IActionResult> UserRegister([FromBody]UserRegisterRequest request) =>
             PrepareResponse(await service.UserRegisterAsync(request));
 
-        [ProducesResponseType(typeof(GeneralResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [DescribeErrorTypeOnResponse(typeof(GlobalResponseCode), 400)]
         [HttpPost("Register/Admin")]
@@ -40,21 +40,21 @@ namespace WizardEmporium.User
         public async Task<IActionResult> Login([FromBody]LoginRequest request) =>
             PrepareResponse(await service.LoginAsync(request));
 
-        [ProducesResponseType(typeof(GeneralResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [DescribeErrorTypeOnResponse(typeof(GlobalResponseCode), 400)]
         [HttpDelete("{accountId}")]
         public async Task<IActionResult> Delete(int accountId) =>
             PrepareResponse(await service.DeleteAccountAsync(accountId));
 
-        [ProducesResponseType(typeof(GeneralResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [DescribeErrorTypeOnResponse(typeof(GlobalResponseCode), 400)]
         [HttpPut("Suspend/{accountId}")]
         public async Task<IActionResult> Suspend(int accountId) =>
             PrepareResponse(await service.SuspendAccountAsync(accountId));
 
-        [ProducesResponseType(typeof(GeneralResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [DescribeErrorTypeOnResponse(typeof(GlobalResponseCode), 400)]
         [HttpPut("Unsuspend/{accountId}")]

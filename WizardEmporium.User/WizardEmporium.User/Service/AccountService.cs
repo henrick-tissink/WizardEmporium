@@ -22,7 +22,7 @@ namespace WizardEmporium.User.Service
             this.roleConfig = roleConfig.Value;
         }
 
-        public async Task<GeneralResponse> UserRegisterAsync(UserRegisterRequest request)
+        public async Task<EmptyResponse> UserRegisterAsync(UserRegisterRequest request)
         {
             var response = await repo.FindAccountAsync(request.Username, PasswordHash(request.Username, request.Password));
 
@@ -33,7 +33,7 @@ namespace WizardEmporium.User.Service
             return GlobalResponseCode.None;
         }
 
-        public async Task<GeneralResponse> AdminRegisterAsync(AdminRegisterRequest request)
+        public async Task<EmptyResponse> AdminRegisterAsync(AdminRegisterRequest request)
         {
             var response = await repo.FindAccountAsync(request.Username, PasswordHash(request.Username, request.Password));
 
@@ -61,19 +61,17 @@ namespace WizardEmporium.User.Service
             };
         }
 
-        public async Task<GeneralResponse> DeleteAccountAsync(int accountId) 
+        public async Task<EmptyResponse> DeleteAccountAsync(int accountId) 
         {
             var response = await repo.FindAccountAsync(accountId);
             if (response == null)
                 return GlobalResponseCode.UserDoesNotExist;
 
-            await repo.DeleteFromSuspendedAccountAsync(accountId);
             await repo.DeleteAccountAsync(accountId);
-
             return GlobalResponseCode.None;
         }
 
-        public async Task<GeneralResponse> SuspendAccountAsync(int accountId)
+        public async Task<EmptyResponse> SuspendAccountAsync(int accountId)
         {
             var account = await repo.FindAccountAsync(accountId);
             if (account == null)
@@ -87,7 +85,7 @@ namespace WizardEmporium.User.Service
             return GlobalResponseCode.None;
         }
 
-        public async Task<GeneralResponse> UnsuspendAccountAsync(int accountId)
+        public async Task<EmptyResponse> UnsuspendAccountAsync(int accountId)
         {
             var response = await repo.FindSuspendedAccountAsync(accountId);
 

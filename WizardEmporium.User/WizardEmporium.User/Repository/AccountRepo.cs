@@ -34,9 +34,18 @@ FROM SuspendedAccount
 WHERE AccountId = @accountId", new { accountId }));
 
         public async Task DeleteAccountAsync(int accountId) =>
-            await GetConnectionAsync(con => con.ExecuteAsync(@"
+            await GetConnectionTransactionAsync((con, tran) =>
+            {
+                var deleteFromAccount = con.ExecuteAsync(@"
 DELETE FROM Account
-WHERE AccountId = @accountId", new { accountId }));
+WHERE AccountId = @accountId", new { accountId });
+
+                var deleteFromSuspendedAccount = con.ExecuteAsync(@"
+DELETE FROM SuspendedAccount
+WHERE AccountId = @accountId", new { accountId });
+
+                return Task.WhenAll(deleteFromAccount, deleteFromSuspendedAccount);
+                });
 
         public async Task<int> InsertIntoSuspendedAccountAsync(int accountId) =>
             await GetConnectionAsync(con => con.ExecuteScalarAsync<int>(@"

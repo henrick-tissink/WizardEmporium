@@ -18,39 +18,39 @@ namespace WizardEmporium.Store.Service
             this.repo = repo;
         }
 
-        public async Task<GetMagicItemsResponse> GetAllStockAsync()
+        public async Task<SimpleResponse<IEnumerable<MagicItemDto>>> GetAllStockAsync()
         {
-            var response = await repo.GetMagicItemsAsync();
+            var magicItems = await repo.GetMagicItemsAsync();
 
-            return new GetMagicItemsResponse
+            return new SimpleResponse<IEnumerable<MagicItemDto>>
             {
-                MagicItems = response
+                Value = magicItems
             };
         }
 
-        public async Task<GetMagicItemsResponse> GetStockAsync(IEnumerable<int> magicItemIds)
+        public async Task<SimpleResponse<IEnumerable<MagicItemDto>>> GetStockAsync(IEnumerable<int> magicItemIds)
         {
-            var response = await repo.GetMagicItemsAsync(magicItemIds);
+            var magicItems = await repo.GetMagicItemsAsync(magicItemIds);
 
-            return new GetMagicItemsResponse
+            return new SimpleResponse<IEnumerable<MagicItemDto>>
             {
-                MagicItems = response
+                Value = magicItems
             };
         }
 
-        public async Task<GeneralResponse> UpdateStockAsync(IEnumerable<MagicItemDto> magicItems)
+        public async Task<EmptyResponse> UpdateStockAsync(IEnumerable<MagicItemDto> magicItems)
         {
             await repo.UpdateMagicItemsAsync(magicItems);
             return GlobalResponseCode.None;
         }
 
-        public async Task<GeneralResponse> DeleteStockAsync(IEnumerable<int> itemIds)
+        public async Task<EmptyResponse> DeleteStockAsync(IEnumerable<int> itemIds)
         {
             await repo.DeleteMagicItemsAsync(itemIds);
             return GlobalResponseCode.None;
         }
 
-        public async Task<GeneralResponse> AddStockAsync(IEnumerable<MagicItemDto> magicItems)
+        public async Task<EmptyResponse> AddStockAsync(IEnumerable<MagicItemDto> magicItems)
         {
             await repo.InsertMagicItemsAsync(magicItems);
             return GlobalResponseCode.None;
@@ -75,19 +75,19 @@ namespace WizardEmporium.Store.Service
             return new BuyItemResponse { MagicItem = item };
         }
 
-        public async Task<GeneralResponse> PlaceOrdersAsync(PlaceOrderRequest request)
+        public async Task<EmptyResponse> PlaceOrdersAsync(PlaceOrderRequest request)
         {
             await repo.InsertOrderAsync(request.MagicItemId, request.Quantity);
             return GlobalResponseCode.None;
         }
 
-        public async Task<GetOrdersResponse> GetOrdersAsync()
+        public async Task<SimpleResponse<IEnumerable<MagicItemOrderDto>>> GetOrdersAsync()
         {
             var orders = await repo.GetOrdersAsync();
 
-            return new GetOrdersResponse
+            return new SimpleResponse<IEnumerable<MagicItemOrderDto>>
             {
-                OutstandingOrders = orders
+                Value = orders
             };
         }
 
