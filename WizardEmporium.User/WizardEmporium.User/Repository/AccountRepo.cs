@@ -32,7 +32,7 @@ WHERE AccountId = @accountId", new { accountId }));
 SELECT AccountId
 FROM SuspendedAccount
 WHERE AccountId = @accountId", new { accountId }));
-
+//Why would you keep a suspended account in a different table rather than adding a status / flag on the account table?
         public async Task DeleteAccountAsync(int accountId) =>
             await GetConnectionTransactionAsync((con, tran) =>
             {
