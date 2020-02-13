@@ -21,12 +21,10 @@ namespace WizardEmporium.Deliveries.Controller
 
         [HttpPost("Schedule")]
         public async Task<IActionResult> ScheduleDelivery(ScheduleDeliveryRequest request) =>
-            PrepareResponse(await service.)
+            PrepareResponse(await service.ScheduleDelivery(request));
 
         [HttpPut("Complete/{deliveryId}")]
-        public Task<IActionResult> CompleteDelivery(int deliveryId)
-        {
-            return null;
-        }
+        public async Task<IActionResult> CompleteDelivery(int deliveryId) =>
+            PrepareResponse(await service.CompleteDeliveryAsync(deliveryId));
     }
 }
