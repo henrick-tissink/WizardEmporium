@@ -56,7 +56,7 @@ namespace WizardEmporium.Store.Service
             return GlobalResponseCode.None;
         }
 
-        public async Task<BuyItemResponse> BuyItemAsync(int magicItemId, int userId)
+        public async Task<BuyItemResponse> BuyItemAsync(int magicItemId, int accountId)
         {
             var item = (await repo.GetMagicItemsAsync(new List<int> { magicItemId }))?.FirstOrDefault();
 
@@ -69,6 +69,9 @@ namespace WizardEmporium.Store.Service
             item.Quantity--;
 
             await repo.UpdateMagicItemsAsync(new List<MagicItemDto> { item });
+
+            // TODO: Allocate item to account...
+
             return new BuyItemResponse { MagicItem = item };
         }
 
@@ -76,6 +79,16 @@ namespace WizardEmporium.Store.Service
         {
             await repo.InsertOrderAsync(request.MagicItemId, request.Quantity);
             return GlobalResponseCode.None;
+        }
+
+        public async Task<GetOrdersResponse> GetOrdersAsync()
+        {
+            var orders = await repo.GetOrdersAsync();
+
+            return new GetOrdersResponse
+            {
+                OutstandingOrders = orders
+            };
         }
 
         public async Task<ProcessOrderResponse> ProcessOrderAsync(int orderId)
