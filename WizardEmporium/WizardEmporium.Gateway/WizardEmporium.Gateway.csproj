@@ -1,7 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="configuration.json" />
+    <Content Remove="configuration\configuration.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="configuration\configuration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ocelot" Version="14.0.9" />
+  </ItemGroup>
 
 </Project>

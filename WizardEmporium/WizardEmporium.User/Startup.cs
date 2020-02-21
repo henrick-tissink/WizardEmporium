@@ -13,8 +13,6 @@ namespace WizardEmporium.User
 {
     public class Startup
     {
-        protected Startup() { }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

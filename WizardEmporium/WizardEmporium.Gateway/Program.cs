@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +21,10 @@ namespace WizardEmporium.Gateway
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureAppConfiguration(
+                          ic => ic.AddJsonFile(Path.Combine("configuration",
+                                                            "configuration.json")))
+                              .UseStartup<Startup>();
                 });
     }
 }
