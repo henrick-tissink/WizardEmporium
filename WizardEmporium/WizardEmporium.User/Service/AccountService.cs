@@ -49,7 +49,7 @@ namespace WizardEmporium.User.Service
             if (response == null)
                 return AccountServiceResponseCode.InvalidPasswordOrUsername;
 
-            if (await repo.FindSuspendedAccountAsync(response.AccountId) != null)
+            if (response.Suspended)
                 return AccountServiceResponseCode.AccountAlreadySuspended;
 
             return new LoginResponse
@@ -76,22 +76,17 @@ namespace WizardEmporium.User.Service
             if (account == null)
                 return AccountServiceResponseCode.AccountDoesNotExist;
 
-            var response = await repo.FindSuspendedAccountAsync(accountId);
-            if (response.HasValue)
-                return AccountServiceResponseCode.AccountAlreadySuspended;
-
-            await repo.InsertIntoSuspendedAccountAsync(accountId);
+            await repo.UpdateAccountAsync(account.AccountId, true);
             return AccountServiceResponseCode.Success;
         }
 
         public async Task<EmptyResponse<AccountServiceResponseCode>> UnsuspendAccountAsync(int accountId)
         {
-            var response = await repo.FindAccountAsync(accountId);
+            var account = await repo.FindAccountAsync(accountId);
+            if (account == null)
+                return AccountServiceResponseCode.AccountDoesNotExist;
 
-            if (response == null)
-                return AccountServiceResponseCode.AccountAlreadyUnsuspended;
-
-            await repo.DeleteFromSuspendedAccountAsync(accountId);
+            await repo.UpdateAccountAsync(accountId, false);
             return AccountServiceResponseCode.Success;
         }
 
