@@ -7,6 +7,7 @@ using WizardEmporium.Deliveries.ServiceObject;
 
 namespace WizardEmporium.Deliveries.Controller
 {
+    [Route("api/[controller]")]
     public class DeliveryController : BaseController
     {
         private readonly IDeliveryService service;

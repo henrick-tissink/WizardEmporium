@@ -9,6 +9,7 @@ using WizardEmporium.Store.ServiceObject;
 
 namespace WizardEmporium.Store.Controller
 {
+    [Route("api/[controller]")]
     public class StoreController : BaseController
     {
         private readonly IStoreService service;

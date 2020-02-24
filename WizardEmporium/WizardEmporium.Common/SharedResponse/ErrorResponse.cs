@@ -7,10 +7,9 @@ namespace WizardEmporium.Common.SharedResponse
         public ErrorResponse(GlobalResponseCode errorCode)
         {
             ErrorCode = errorCode;
-            ErrorMessage = errorCode.ToString();
         }
 
         public GlobalResponseCode ErrorCode { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage => ErrorCode.ToString();
     }
 }
