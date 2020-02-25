@@ -68,7 +68,7 @@ namespace WizardEmporium.Store.Controller
             PrepareResponse(await service.GetOrdersAsync());
 
         [HttpPut("ProcessOrders")]
-        [ProducesResponseType(typeof(ProcessOrderResponse), 200)]
+        [ProducesResponseType(typeof(EmptyResponse<StoreServiceResponseCode>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> ProcessOrders(int orderId) =>
             PrepareResponse(await service.ProcessOrderAsync(orderId));

@@ -15,7 +15,7 @@ namespace WizardEmporium.Store.Service
         Task<ValueResponse<IEnumerable<MagicItemOrderDto>, StoreServiceResponseCode>> GetOrdersAsync();
         Task<ValueResponse<IEnumerable<MagicItemDto>, StoreServiceResponseCode>> GetStockAsync(IEnumerable<int> magicItemIds);
         Task<EmptyResponse<StoreServiceResponseCode>> PlaceOrdersAsync(PlaceOrderRequest request);
-        Task<ProcessOrderResponse> ProcessOrderAsync(int orderId);
+        Task<EmptyResponse<StoreServiceResponseCode>> ProcessOrderAsync(int orderId);
         Task<EmptyResponse<StoreServiceResponseCode>> UpdateStockAsync(IEnumerable<MagicItemDto> magicItems);
     }
 }

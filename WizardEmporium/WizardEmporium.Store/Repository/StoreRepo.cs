@@ -13,12 +13,12 @@ namespace WizardEmporium.Store.Repository
         public async Task<IEnumerable<MagicItemDto>> GetMagicItemsAsync() =>
             await GetConnectionAsync(con => con.QueryAsync<MagicItemDto>(@"
 SELECT MagicItemId, Description, Price, Quantity
-FROM INVENTORY"));
+FROM Inventory"));
 
         public async Task<IEnumerable<MagicItemDto>> GetMagicItemsAsync(IEnumerable<int> itemIds) =>
             await GetConnectionAsync(con => con.QueryAsync<MagicItemDto>(@"
 SELECT MagicItemId, Description, Price, Quantity
-FROM INVENTORY
+FROM Inventory
 WHERE MagicItemId IN @itemIds", new { itemIds }));
 
         public async Task InsertMagicItemsAsync(IEnumerable<MagicItemDto> items) =>
@@ -50,32 +50,32 @@ WHERE AccountId in @itemIds", new { itemIds }));
 
         public async Task InsertOrderAsync(int magicItem, int quantity) =>
             await GetConnectionAsync(con => con.ExecuteAsync(@"
-INSERT INTO Orders(MagicItemId, Quantity)
+INSERT INTO StoreOrder(MagicItemId, Quantity)
 VALUES(@magicItem, @quantity)", new { magicItem, quantity }));
 
         public async Task<IEnumerable<MagicItemOrderDto>> GetOrdersAsync() =>
             await GetConnectionAsync(con => con.QueryAsync<MagicItemOrderDto>(@"
 SELECT OrderId, MagicItemId, Quantity
-FROM Orders"));
+FROM StoreOrder"));
 
         public async Task<MagicItemOrderDto> GetOrderAsync(int orderId) =>
             await GetConnectionAsync(con => con.QueryFirstOrDefaultAsync<MagicItemOrderDto>(@"
 SELECT OrderId, MagicItemId, Quantity
-FROM Orders
+FROM StoreOrder
 WHERE OrderId = @orderId", new { orderId }));
 
         public async Task DeleteOrderAsync(int orderId) =>
             await GetConnectionAsync(con => con.ExecuteAsync(@"
-DELETE FROM Orders
+DELETE FROM StoreOrder
 WHERE OrderId = @orderId", new { orderId }));
 
         public async Task ProcessOrderAsync(int orderId, MagicItemDto dto) =>
             await GetConnectionTransactionAsync((con, tran) =>
             {
                 var deleteOrder = con.ExecuteAsync(@"
-DELETE FROM Orders
+DELETE FROM StoreOrder
 WHERE OrderId = @orderId", new { orderId });
-//Your table naming is inconsistent here with the rest of your tables. Here it is a plural whereas the rest are singular.
+
                 var updateStore = con.ExecuteAsync(@"
 UPDATE Inventory
 SET Quantity = @Quantity
