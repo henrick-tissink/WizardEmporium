@@ -76,10 +76,11 @@ WHERE OrderId = @orderId", new { orderId }));
 UPDATE INVENTORY
 SET Quantity = @Quantity
 WHERE MagicItemId = @MagicItemId
-", new { MagicItemId = dto.MagicItemId, Quantity = dto.Quantity - orderQuantity }, tran);
+", new { dto.MagicItemId, Quantity = dto.Quantity - orderQuantity }, tran);
 
                 var insertIntoOrder = con.ExecuteAsync(@"
-", tran);
+INSERT INTO StoreOrder(MagicItemId, Quantity)
+VALUES(@MagicItemId, @Quantity)", new { dto.MagicItemId, Quantity = orderQuantity }, tran);
                 return Task.WhenAll(updateInventory, insertIntoOrder);
             });
     }
