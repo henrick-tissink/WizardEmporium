@@ -69,20 +69,18 @@ WHERE OrderId = @orderId", new { orderId }));
 DELETE FROM StoreOrder
 WHERE OrderId = @orderId", new { orderId }));
 
-        public async Task ProcessOrderAsync(int orderId, MagicItemDto dto) =>
+        public async Task BuyItemAsync(MagicItemDto dto, int orderQuantity) =>
             await GetConnectionTransactionAsync((con, tran) =>
             {
-                var deleteOrder = con.ExecuteAsync(@"
-DELETE FROM StoreOrder
-WHERE OrderId = @orderId", new { orderId });
-
-                var updateStore = con.ExecuteAsync(@"
-UPDATE Inventory
+                var updateInventory = con.ExecuteAsync(@"
+UPDATE INVENTORY
 SET Quantity = @Quantity
 WHERE MagicItemId = @MagicItemId
-", dto);
+", new { MagicItemId = dto.MagicItemId, Quantity = dto.Quantity - orderQuantity }, tran);
 
-                return Task.WhenAll(deleteOrder, updateStore);
+                var insertIntoOrder = con.ExecuteAsync(@"
+", tran);
+                return Task.WhenAll(updateInventory, insertIntoOrder);
             });
     }
 }

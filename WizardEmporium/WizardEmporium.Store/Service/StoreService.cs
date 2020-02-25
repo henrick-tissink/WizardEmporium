@@ -55,7 +55,7 @@ namespace WizardEmporium.Store.Service
             return StoreServiceResponseCode.Success;
         }
 
-        public async Task<ValueResponse<MagicItemDto, StoreServiceResponseCode>> BuyItemAsync(int magicItemId, int accountId)
+        public async Task<EmptyResponse<StoreServiceResponseCode>> BuyItemAsync(int magicItemId, int accountId)
         {
             var item = (await repo.GetMagicItemsAsync(new List<int> { magicItemId }))?.FirstOrDefault();
 
@@ -65,13 +65,11 @@ namespace WizardEmporium.Store.Service
             if (item?.Quantity == 0)
                 return StoreServiceResponseCode.NoStockAvailable;
 
-            item.Quantity--;
-
-            await repo.UpdateMagicItemsAsync(new List<MagicItemDto> { item });
+            await repo.BuyItemAsync(item, 1);
 
             // TODO: Allocate item to account...
 
-            return new ValueResponse<MagicItemDto, StoreServiceResponseCode> { Value = item };
+            return StoreServiceResponseCode.Success;
         }
 
         public async Task<EmptyResponse<StoreServiceResponseCode>> PlaceOrdersAsync(PlaceOrderRequest request)
@@ -96,13 +94,7 @@ namespace WizardEmporium.Store.Service
             if (order == null)
                 return StoreServiceResponseCode.OrderNotFound;
 
-            var magicItem = (await repo.GetMagicItemsAsync(new List<int> { order.MagicItemId })).FirstOrDefault();
-            magicItem.Quantity += order.Quantity;
-            if (magicItem == null)
-                return StoreServiceResponseCode.ItemDoesNotExist;
-
-            await repo.ProcessOrderAsync(orderId, magicItem);
-
+            await repo.DeleteOrderAsync(orderId);
             return StoreServiceResponseCode.Success;
         }
     }
