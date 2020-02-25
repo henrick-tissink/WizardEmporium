@@ -50,7 +50,7 @@ namespace WizardEmporium.Store.Controller
             PrepareResponse(await service.DeleteStockAsync(itemIds));
 
         [HttpPost("Buy/{magicItemId}")]
-        [ProducesResponseType(typeof(BuyItemResponse), 200)]
+        [ProducesResponseType(typeof(ValueResponse<MagicItemDto, StoreServiceResponseCode>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> BuyItem(int magicItemId, [FromQuery]int accountId) =>
             PrepareResponse(await service.BuyItemAsync(magicItemId, accountId));

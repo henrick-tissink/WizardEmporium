@@ -9,7 +9,7 @@ namespace WizardEmporium.Store.Service
     public interface IStoreService
     {
         Task<EmptyResponse<StoreServiceResponseCode>> AddStockAsync(IEnumerable<MagicItemDto> magicItems);
-        Task<BuyItemResponse> BuyItemAsync(int magicItemId, int accountId);
+        Task<ValueResponse<MagicItemDto, StoreServiceResponseCode>> BuyItemAsync(int magicItemId, int accountId);
         Task<EmptyResponse<StoreServiceResponseCode>> DeleteStockAsync(IEnumerable<int> itemIds);
         Task<ValueResponse<IEnumerable<MagicItemDto>, StoreServiceResponseCode>> GetAllStockAsync();
         Task<ValueResponse<IEnumerable<MagicItemOrderDto>, StoreServiceResponseCode>> GetOrdersAsync();

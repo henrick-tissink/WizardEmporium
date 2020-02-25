@@ -55,7 +55,7 @@ namespace WizardEmporium.Store.Service
             return StoreServiceResponseCode.Success;
         }
 
-        public async Task<BuyItemResponse> BuyItemAsync(int magicItemId, int accountId)
+        public async Task<ValueResponse<MagicItemDto, StoreServiceResponseCode>> BuyItemAsync(int magicItemId, int accountId)
         {
             var item = (await repo.GetMagicItemsAsync(new List<int> { magicItemId }))?.FirstOrDefault();
 
@@ -71,7 +71,7 @@ namespace WizardEmporium.Store.Service
 
             // TODO: Allocate item to account...
 
-            return new BuyItemResponse { MagicItem = item };
+            return new ValueResponse<MagicItemDto, StoreServiceResponseCode> { Value = item };
         }
 
         public async Task<EmptyResponse<StoreServiceResponseCode>> PlaceOrdersAsync(PlaceOrderRequest request)
