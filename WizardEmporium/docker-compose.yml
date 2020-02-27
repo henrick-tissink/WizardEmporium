@@ -7,8 +7,8 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${Cert_Password}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=${Cert_File}
     build:
-      context: WizardEmporium.Delivery/
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: WizardEmporium.Delivery/Dockerfile
     volumes:
       - ${Cert_Path_From}:${Cert_Path_To}
 
@@ -18,8 +18,8 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${Cert_Password}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=${Cert_File}
     build:
-      context: WizardEmporium.Store/
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: WizardEmporium.Store/Dockerfile
     volumes:
       - ${Cert_Path_From}:${Cert_Path_To}
 
@@ -29,8 +29,8 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${Cert_Password}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=${Cert_File}
     build:
-      context: WizardEmporium.User/
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: WizardEmporium.User/Dockerfile
     volumes:
       - ${Cert_Path_From}:${Cert_Path_To}
 
@@ -43,8 +43,8 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=${Cert_Password}
       - ASPNETCORE_Kestrel__Certificates__Default__Path=${Cert_File}
     build:
-      context: WizardEmporium.Gateway/
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: WizardEmporium.Gateway/Dockerfile
     depends_on:
       - store-api
       - delivery-api

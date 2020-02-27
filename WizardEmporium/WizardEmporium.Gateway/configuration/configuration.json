@@ -25,7 +25,7 @@
       "UpstreamHttpMethod": [ "POST", "PUT", "GET", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "api/Delivery/{everything}",
+      "DownstreamPathTemplate": "/api/Delivery/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
